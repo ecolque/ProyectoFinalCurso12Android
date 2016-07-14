@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("SKD Facebook");
-
         FacebookSdk.sdkInitialize(this);
         callbackManager = CallbackManager.Factory.create();
 
@@ -50,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
         getFbKeyHas("88:C3:3F:05:49:4B:36:23:A6:D7:28:20:7B:3C:6C:73:29:8C:A8:87");
         setContentView(R.layout.activity_main);
 
+        initFacebook();
+        initBanner();
+
+    }
+
+    private void initFacebook(){
         //conexion con activity_main
         loginButton = (LoginButton) findViewById(R.id.login);
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {//llamada de callback a facebook
@@ -76,7 +81,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+    }
 
+    public void initBanner(){
         //conexion del adView para ajuntar el banner
         adView = (AdView) findViewById(R.id.banner_ad_view);
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
